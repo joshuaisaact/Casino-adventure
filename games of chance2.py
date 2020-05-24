@@ -7,29 +7,31 @@ money = 100
 def coin_flip(): 
     global money
     print("Welcome to the coin flip game!")
+    print("You have £" + str(money) + " in your wallet.")
     bet = bet_valid("How much would you like to bet? £")
     flip = random.randint(1,2)
     guess = input("Heads or tails? ")
+    guess = guess.lower()
     if guess == "heads" and flip == 1:
         print("The coin landed on heads!")
         winnings = bet*2
         money += winnings
-        print("Congratulations, you won! Your winnings are $" + str(winnings))
+        print("Congratulations, you won! Your winnings are £" + str(winnings))
         play_again_flip()
     elif guess == "tails" and flip == 2:
         print("The coin landed on tails!")
         winnings = bet*2
         money += winnings
-        print("Congratulations, you won! Your winnings are $" + str(winnings))
+        print("Congratulations, you won! Your winnings are £" + str(winnings))
         play_again_flip()
     elif guess =="heads" and flip == 2:
         print("The coin landed on heads!")
         money += (bet*-1)
-        print("Sorry, you lost. You have lost $" + str(bet))
+        print("Sorry, you lost. You have lost £" + str(bet))
         play_again_flip()
     else:
         print("The coin landed on tails!")
-        print("Sorry, you lost. You have lost $" + str(bet))
+        print("Sorry, you lost. You have lost £" + str(bet))
         money += (bet*-1)
         play_again_flip()
         
@@ -38,40 +40,43 @@ def coin_flip():
 def cho_han():
     global money
     print("Welcome to Cho-Han! This game involves betting whether the sum of two dice rolls is even, or odd.")
+    print("You have £" + str(money) + " in your wallet.")
     bet = bet_valid("How much would you like to bet? £")
     dice1 = random.randint(1,6)
     dice2 = random.randint(1,6)
     dicesum = dice1+dice2
     guess = input("Odd or even? ")
+    guess = guess.lower()
     print("The dice were rolled. They were " + str(dice1) + " and " + str(dice2) + ".")
-    if guess == "Odd" and (dicesum)%2==1:
+    if guess == "odd" and (dicesum)%2==1:
         print("The result is odd.")
         winnings = bet*2
         money += winnings
-        print("Congratulations, you won! Your winnings are $" + str(winnings))
+        print("Congratulations, you won! Your winnings are £" + str(winnings))
         play_again_cho_han()
-    elif guess == "Even" and (dicesum)%2 == 0:
+    elif guess == "even" and (dicesum)%2 == 0:
         print("The result is even.")
         winnings = bet*2
         money += winnings
-        print("Congratulations, you won! Your winnings are $" + str(winnings))
+        print("Congratulations, you won! Your winnings are £" + str(winnings))
         play_again_cho_han()
-    elif guess == "Odd" and (dicesum)%2==0:
+    elif guess == "odd" and (dicesum)%2==0:
         print("The result is even.")
         money += (bet*-1)
-        print("Sorry, you lost. You have lost $" + str(bet))
+        print("Sorry, you lost. You have lost £" + str(bet))
         play_again_cho_han()
 
     else:
         print("The result is odd.")
         money += (bet*-1)
-        print("Sorry, you lost. You have lost $" + str(bet))
+        print("Sorry, you lost. You have lost £" + str(bet))
         play_again_cho_han()
 
 
 def card_draw():
     global money
     print("Welcome to Two Card Draw! This game involves you and the dealer drawing a card each from a pack of cards. The highest card wins. Ace is high. If you both draw the same card, your bet is returned.")
+    print("You have £" + str(money) + " in your wallet.")
     bet = bet_valid("How much would you like to bet? £")
     deck1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
     deck2 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
