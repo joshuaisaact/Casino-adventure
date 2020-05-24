@@ -10,72 +10,101 @@ def coin_flip():
     print("You have £" + str(money) + " in your wallet.")
     bet = bet_valid("How much would you like to bet? £")
     flip = random.randint(1,2)
-    guess = input("Heads or tails? ")
-    guess = guess.lower()
-    if guess == "heads" and flip == 1:
-        print("The coin landed on heads!")
-        winnings = bet*2
-        money += winnings
-        print("Congratulations, you won! Your winnings are £" + str(winnings))
-        play_again_flip()
-    elif guess == "tails" and flip == 2:
-        print("The coin landed on tails!")
-        winnings = bet*2
-        money += winnings
-        print("Congratulations, you won! Your winnings are £" + str(winnings))
-        play_again_flip()
-    elif guess =="heads" and flip == 2:
-        print("The coin landed on heads!")
-        money += (bet*-1)
-        print("Sorry, you lost. You have lost £" + str(bet))
-        play_again_flip()
-    else:
-        print("The coin landed on tails!")
-        print("Sorry, you lost. You have lost £" + str(bet))
-        money += (bet*-1)
-        play_again_flip()
+    while True:
+        try:
+         guess = int(input("""Which way will the coin land?
+
+            1. Heads
+            2. Tails
+
+            :"""))
+        except ValueError:
+            print("Sorry, I don't understand that. Please use a number to pick either heads or tails.")
+            continue
+        if guess == 1 and flip == 1:
+            print("The coin landed on heads!")
+            winnings = bet*2
+            money += winnings
+            print("Congratulations, you won! Your winnings are £" + str(winnings))
+            play_again_flip()
+        elif guess == 2 and flip == 2:
+            print("The coin landed on tails!")
+            winnings = bet*2
+            money += winnings
+            print("Congratulations, you won! Your winnings are £" + str(winnings))
+            play_again_flip()
+        elif guess == 1 and flip == 2:
+            print("The coin landed on tails!")
+            money += (bet*-1)
+            print("Sorry, you lost. You have lost £" + str(bet))
+            play_again_flip()
+        elif guess ==2 and flip == 1: 
+            print("The coin landed on heads!")
+            print("Sorry, you lost. You have lost £" + str(bet))
+            money += (bet*-1)
+            play_again_flip()
+        else:
+            print("Please pick either heads or tails!")
+            continue
+
         
 #This is the code for Cho-Han
 
 def cho_han():
     global money
-    print("Welcome to Cho-Han! This game involves betting whether the sum of two dice rolls is even, or odd.")
+    print("""Welcome to Cho-Han! 
+        This game involves betting whether the sum of two dice rolls is even, or odd.""")
     print("You have £" + str(money) + " in your wallet.")
     bet = bet_valid("How much would you like to bet? £")
     dice1 = random.randint(1,6)
     dice2 = random.randint(1,6)
     dicesum = dice1+dice2
-    guess = input("Odd or even? ")
-    guess = guess.lower()
-    print("The dice were rolled. They were " + str(dice1) + " and " + str(dice2) + ".")
-    if guess == "odd" and (dicesum)%2==1:
-        print("The result is odd.")
-        winnings = bet*2
-        money += winnings
-        print("Congratulations, you won! Your winnings are £" + str(winnings))
-        play_again_cho_han()
-    elif guess == "even" and (dicesum)%2 == 0:
-        print("The result is even.")
-        winnings = bet*2
-        money += winnings
-        print("Congratulations, you won! Your winnings are £" + str(winnings))
-        play_again_cho_han()
-    elif guess == "odd" and (dicesum)%2==0:
-        print("The result is even.")
-        money += (bet*-1)
-        print("Sorry, you lost. You have lost £" + str(bet))
-        play_again_cho_han()
+    while True:
+        try:
+            guess = int(input("""Odd or even? 
 
-    else:
-        print("The result is odd.")
-        money += (bet*-1)
-        print("Sorry, you lost. You have lost £" + str(bet))
-        play_again_cho_han()
+                1. Odd
+                2. Even
+
+                :"""))
+        except ValueError:
+            print("Sorry, I don't understand that. Please use a number to pick either odd or even.")
+            continue
+        if guess == 1 and (dicesum)%2==1:
+            print("The dice were rolled. They were " + str(dice1) + " and " + str(dice2) + ".")
+            print("The result is odd.")
+            winnings = bet*2
+            money += winnings
+            print("Congratulations, you won! Your winnings are £" + str(winnings))
+            play_again_cho_han()
+        elif guess == 2 and (dicesum)%2 == 0:
+            print("The dice were rolled. They were " + str(dice1) + " and " + str(dice2) + ".")
+            print("The result is even.")
+            winnings = bet*2
+            money += winnings
+            print("Congratulations, you won! Your winnings are £" + str(winnings))
+            play_again_cho_han()
+        elif guess == 1 and (dicesum)%2==0:
+            print("The dice were rolled. They were " + str(dice1) + " and " + str(dice2) + ".")
+            print("The result is even.")
+            money += (bet*-1)
+            print("Sorry, you lost. You have lost £" + str(bet))
+            play_again_cho_han()
+        elif guess == 2 and (dicesum)%2==1:
+            print("The dice were rolled. They were " + str(dice1) + " and " + str(dice2) + ".")
+            print("The result is odd.")
+            money += (bet*-1)
+            print("Sorry, you lost. You have lost £" + str(bet))
+            play_again_cho_han()
+        else:
+            print("Please pick either odd or even.")
+            continue
 
 
 def card_draw():
     global money
-    print("Welcome to Two Card Draw! This game involves you and the dealer drawing a card each from a pack of cards. The highest card wins. Ace is high. If you both draw the same card, your bet is returned.")
+    print("""Welcome to Two Card Draw! 
+        This game involves you and the dealer drawing a card each from a pack of cards. The highest card wins. Ace is high. If you both draw the same card, your bet is returned.""")
     print("You have £" + str(money) + " in your wallet.")
     bet = bet_valid("How much would you like to bet? £")
     deck1 = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
@@ -104,6 +133,7 @@ def card_draw():
 def roulette():
     global money
     print("Welcome to the roulette table! This game involves betting on the outcome of a spin of a roulette wheel. You can bet on odd, even, red, black or a specific number, from 0 to 35.")
+    print("You have £" + str(money) + " in your wallet.")
     bet = bet_valid("How much would you like to bet? £")
     guess = input("What would you like to gamble? You can enter red, black, odd, even, or a specific number. ")
     result = random.randint(0,35)
