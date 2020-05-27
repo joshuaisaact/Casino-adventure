@@ -7,22 +7,22 @@ money = 100
 def coin_flip(): 
     global money
     print("Welcome to the coin flip game!")
-    print("You have £" + str(money) + " in your wallet.")
+    print("You have £{} in your wallet.".format(money))
     bet = bet_valid("How much would you like to bet? £")
     flip = random.randint(1,2)
 
     def successful_flip(result):
         global money
-        print("The coin landed on " + str(result))
+        print("The coin landed on {}".format(result))
         money+= bet*2
         print("Congratulations, you won! Your winnings are £" + str(bet*2) +".")
         play_again_flip()
 
     def unsuccessful_flip(result):
         global money
-        print("The coin landed on " + str(result))
+        print("The coin landed on {}".format(result))
         money += bet*-1
-        print("Sorry, you lost. You have lost £" + str(bet) + ".")
+        print("Sorry, you lost. You have lost £{}.".format(bet))
         play_again_flip()
 
     while True:
@@ -63,18 +63,18 @@ def cho_han():
 
     def winning_roll(result):
         global money
-        print("The dice were rolled. They were " + str(dice1) + " and " + str(dice2) + ".")
-        print("The result is " + result)
+        print("The dice were rolled. They were {} and {}.".format(dice1,dice2))
+        print("The result is {}".format(result))
         money += bet*2
-        print("Congratulations, you won! Your winnings are £" + str(bet*2))
+        print("Congratulations, you won! Your winnings are £{}".format(bet*2))
         play_again_cho_han()
 
     def losing_roll(result):
         global money
-        print("The dice were rolled. They were " + str(dice1) + " and " + str(dice2) + ".")
-        print("The result is " + result)
+        print("The dice were rolled. They were {} and {}.".format(dice1,dice2))
+        print("The result is {}".format(result))
         money += (bet*-1)
-        print("Sorry, you lost. You have lost £" + str(bet))
+        print("Sorry, you lost. You have lost £{}.".format(bet))
         play_again_cho_han()
 
     while True:
@@ -106,23 +106,23 @@ def card_draw():
     global money
     print("""Welcome to Two Card Draw! 
         This game involves you and the dealer drawing a card each from a pack of cards. The highest card wins. Ace is high. If you both draw the same card, your bet is returned.""")
-    print("You have £" + str(money) + " in your wallet.")
+    print("You have £{} in your wallet.".format(money))
     bet = bet_valid("How much would you like to bet? £")
     deck = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
     card1index = random.choice(range(len(deck)))
     card2index = random.choice(range(len(deck)))
     card1 = deck[card1index]
     card2 = deck[card2index]
-    print("The dealer drew " + card1 + ". You drew " + card2 + ".")
+    print("The dealer drew {}. You drew {}.".format(card1,card2))
     if card2index > card1index:
         print("You have the higher card.")
         money += bet*2
-        print("Congratulations, you won! Your winnings are £" + str(bet))
+        print("Congratulations, you won! Your winnings are £{}.".format(bet*2))
         play_again_cards()
     elif card1index > card2index:
         print("The dealer has the higher card.")
         money += bet*-1
-        print("Sorry, you lost. You have lost £" + str(bet))
+        print("Sorry, you lost. You have lost £{}.".format(bet))
         play_again_cards()
     else:
         print("It's a draw!")
@@ -133,7 +133,7 @@ def card_draw():
 def roulette():
     global money
     print("Welcome to the roulette table! This game involves betting on the outcome of a spin of a roulette wheel. You can bet on odd, even, red, black or a specific number, from 0 to 35.")
-    print("You have £" + str(money) + " in your wallet.")
+    print("You have £{} in your wallet.".format(money))
     bet = bet_valid("How much would you like to bet? £")
     guess = input("What would you like to gamble? You can enter red, black, odd, even, or a specific number. ")
     result = random.randint(0,36)
@@ -152,14 +152,14 @@ def roulette():
     def winning_bet():
         global money
         money+=bet*2
-        print ("Congratulations, you win! Your winnings are £" + str(bet))
+        print ("Congratulations, you win! Your winnings are £{}.".format(bet*2))
         play_again_roulette()
 
 
-    print("The wheel spins, and the ball lands on " + str(colour()) + str(result))
+    print("The wheel spins, and the ball lands on {}{}".format(colour(),result))
     if guess == result:
         money += bet*35
-        print("Congratulations! You hit the jackpot! Your winnings are £" + str(bet*35))
+        print("Congratulations! You hit the jackpot! Your winnings are £{}.".format(bet*35))
         play_again_roulette()
     elif result%2 == 0 and guess.lower() == "even":
         winning_bet()
@@ -171,7 +171,7 @@ def roulette():
         winning_bet()
     else:
         money = money-bet
-        print("Unfortunately you have lost £" + str(bet))
+        print("Unfortunately you have lost £{}.".format(bet))
         play_again_roulette()
 
 
@@ -205,7 +205,7 @@ def game_choice():
             print("I'm sorry, I don't know that game")
 
 def play_again_flip():
-    print("You now have £" + str(money) + " in your wallet")
+    print("You now have £{} in your wallet".format(money))
     playagain = input("Would you like to play again? (Y/N): ")
     if playagain == "Y":
         coin_flip()
@@ -213,7 +213,7 @@ def play_again_flip():
         game_choice()
         
 def play_again_cho_han():
-    print ("You now have £" + str(money) + " in your wallet")
+    print("You now have £{} in your wallet".format(money))
     playagaincho = input("Would you like to play again? (Y/N): ")
     if playagaincho == "Y":
         cho_han()
@@ -221,7 +221,7 @@ def play_again_cho_han():
         game_choice()
 
 def play_again_cards():
-    print ("You now have £" + str(money) + " in your wallet.")
+    print("You now have £{} in your wallet".format(money))
     playagaincards = input("Would you like to play again? (Y/N): ")
     if playagaincards == "Y":
         card_draw()
@@ -229,7 +229,7 @@ def play_again_cards():
         game_choice()
 
 def play_again_roulette():
-    print("You now have £" + str(money) + " in your wallet.")
+    print("You now have £{} in your wallet".format(money))
     playagainroulette = input("Would you like to play again? (Y/N): ")
     if playagainroulette == "Y":
         roulette()
@@ -259,7 +259,7 @@ def bet_valid(prompt):
     
 Welcome = print(""""Welcome to Josh's Casino Game!
 
-You enter the casino with £""" + str(money) + """ in your pocket. There are a number of games available to play.""")
+You enter the casino with £{} in your pocket. There are a number of games available to play.""".format(money))
 
 Welcome
 
