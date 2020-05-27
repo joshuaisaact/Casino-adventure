@@ -161,13 +161,13 @@ def roulette():
         money += bet*35
         print("Congratulations! You hit the jackpot! Your winnings are £" + str(bet*35))
         play_again_roulette()
-    elif result%2 == 0 and guess == "even":
+    elif result%2 == 0 and guess.lower() == "even":
         winning_bet()
-    elif result%2 == 1 and guess == "odd":
+    elif result%2 == 1 and guess.lower() == "odd":
         winning_bet()
-    elif result%2 == 0 and guess == "black":
+    elif result%2 == 0 and guess.lower() == "black":
         winning_bet()
-    elif result%2 == 1 and guess == "red":
+    elif result%2 == 1 and guess.lower() == "red":
         winning_bet()
     else:
         money = money-bet
